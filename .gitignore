@@ -1,0 +1,10 @@
+node_modules/
+build/
+dist/
+coverage/
+src/data/master/*
+.DS_Store
+*.log
+.env*
+!.env.example
+W_Scott_web_CV.code-workspace

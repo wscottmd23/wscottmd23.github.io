@@ -1,0 +1,20 @@
+[
+  {
+    "name": "American Board of Pediatrics",
+    "issuer": "Board Certified",
+    "issue_date": "10/12/2023",
+    "expiration": "12/21/2028"
+  },
+  {
+    "name": "Basic Life Support",
+    "issuer": "AHA",
+    "issue_date": "08/2016",
+    "expiration": "04/30/2026"
+  },
+  {
+    "name": "Neonatal Resuscitation Program Provider",
+    "issuer": "AAP/AHA",
+    "issue_date": "06/2020",
+    "expiration": "04/30/2026"
+  }
+]
