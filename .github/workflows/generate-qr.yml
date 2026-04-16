@@ -17,7 +17,7 @@ jobs:
       uses: snow-actions/qrcode@v2.0.0
       with:
         # UPDATE THIS to your actual project URL
-        text: 'https://github.com/your-username/your-repo' 
+        text: 'https://wscottmd23.github.io/' 
         path: qrcode.png
 
     - name: Configure Git User
