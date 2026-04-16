@@ -427,7 +427,18 @@ export default function App() {
           </div>
 
         <div className="flex justify-between items-center print:hidden">
-          <h2 className="text-xs font-bold uppercase tracking-[0.1em] text-accent">Curriculum Vitae</h2>
+          <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
+            <h2 className="text-xs font-bold uppercase tracking-[0.1em] text-accent">Curriculum Vitae</h2>
+            <a 
+              href="/assets/PAS_2026_additional_data.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 px-4 py-2.5 bg-[#e49542] text-white rounded-xl text-sm font-bold hover:bg-[#e49542]/90 shadow-sm transition-colors w-fit"
+            >
+              <ExternalLink className="w-4 h-4 shrink-0" />
+              PAS 2026 Additional Data
+            </a>
+          </div>
           <div className="hidden md:flex items-center gap-3">
             <button
               onClick={() => setIsDarkMode(!isDarkMode)}
