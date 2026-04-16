@@ -1,28 +1,35 @@
 name: QRCode
 on:
   push:
-    branches: [ main ]
+    branches: [ main ] # Triggered whenever you push to main
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout Code
+      uses: actions/checkout@v4
+      # We removed 'ref: qrcode' here so it starts by looking at your current code
+
+    - name: Generate QR Code
+      uses: snow-actions/qrcode@v2.0.0
       with:
-        ref: qrcode
-    - uses: snow-actions/qrcode@v2.0.0
-      with:
-        text: https://github.com/snow-actions/qrcode
+        text: 'https://https://github.com/wscottmd23/wscottmd23.github.io/' # UPDATE THIS URL
         path: qrcode.png
-    - uses: snow-actions/git-config-user@v1.0.0
-    - name: You can commit it.
+
+    - name: Configure Git User
+      uses: snow-actions/git-config-user@v1.0.0
+
+    - name: Commit and Push to qrcode branch
       run: |
         git add qrcode.png
-        git commit -m "QR Code"
-        git push origin qrcode
-    - name: You can upload it to artifact.
-      uses: actions/upload-artifact@v1
+        git commit -m "Update QR Code"
+        # This pushes the image to a branch named 'qrcode'
+        git push origin HEAD:qrcode --force 
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v4 # Updated from v1 to v4
       with:
-        name: qrcode
+        name: qrcode-image
         path: qrcode.png
