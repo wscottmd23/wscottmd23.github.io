@@ -6,32 +6,34 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    # This block gives the Action permission to push the PNG back to your repo
     permissions:
       contents: write
 
     steps:
     - name: Checkout Code
       uses: actions/checkout@v4
-      with:
-        # Fetching all history ensures git knows about other branches
-        fetch-depth: 0 
 
     - name: Generate QR Code
       uses: snow-actions/qrcode@v2.0.0
       with:
-        text: 'https://github.com/snow-actions/qrcode' # UPDATE THIS to your URL
+        # UPDATE THIS to your actual project URL
+        text: 'https://github.com/your-username/your-repo' 
         path: qrcode.png
 
     - name: Configure Git User
       uses: snow-actions/git-config-user@v1.0.0
 
-    - name: Commit and Push to qrcode branch
+    - name: Commit and Push to main
       run: |
         git add qrcode.png
-        # The '|| true' prevents the error if there are no changes to commit
-        git commit -m "Update QR Code" || true
-        git push origin HEAD:qrcode --force
+        # Check if there are actual changes to prevent empty commit errors
+        if [ -n "$(git status --porcelain)" ]; then
+          # '[skip ci]' tells GitHub NOT to run this action again for this commit
+          git commit -m "Update QR Code [skip ci]"
+          git push origin main
+        else
+          echo "No changes in QR code detected. Skipping push."
+        fi
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
